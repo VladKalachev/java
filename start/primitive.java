@@ -63,6 +63,7 @@ public class primitive {
         // char s = (char)a;
         // System.out.println("a = " + s);
 
+        // 3. Битовые операторы, битовые маски
         // &, |, ^ - ксор ( исключающая или )
         // <<, >>, >>>, ~
 
@@ -79,12 +80,42 @@ public class primitive {
         //  System.out.println("a = " + a);
         //  System.out.println("b = " + b);
 
-        int a = 1;
-        printBinaty(a, 32);
+        // int a = 1;
+        // printBinaty(a, 32);
 
-        int b = a << 5;
-        printBinaty(b, 32);
-        System.out.println(b);
+        // int b = a << 5;
+        // printBinaty(b, 32);
+        // System.out.println(b);
+
+        // 4. Логические и математические операции
+        // int a = 1;
+        // int b = 0;
+
+        // boolean c = a && b;
+        // boolean c = a || b;
+        // boolean c = !a;
+        // boolean c = a != b;
+        // System.out.println(c);
+
+        // 5. Приоритеты
+        // int a = 1;
+        // System.out.println(++a);
+        // System.out.println(a--);
+        // System.out.println(a);
+
+        // 6. Управление логикой работы приложения
+        // if, else, else if, switch
+
+        // int hour = 21;
+
+        // boolean isWorkTime = hour >=9 && hour < 21;
+        // if(isWorkTime) {
+        //     System.out.println("Hello!");
+        // } else if(hour == 21){
+        //     System.out.println("Have a good night");  
+        // } else {
+        //     System.out.println("Bay");
+        // }
     }
 
     private static void printBinaty(long value, int size) {
