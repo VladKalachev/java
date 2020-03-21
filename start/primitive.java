@@ -116,6 +116,39 @@ public class primitive {
         // } else {
         //     System.out.println("Bay");
         // }
+
+        // int count = 10;
+
+        // switch(count){
+        //     case 1:
+        //         System.out.println("0%");
+        //         break;
+        //     case 2:
+        //         System.out.println("10%");
+        //         break;
+        //     default:
+        //         System.out.println("50%");
+        // }
+
+        // 7. Циклы
+        // for, while, do while
+
+        // for(int i = 0; i < 32; i++){
+        //     System.out.println(i);
+        // }
+
+        // int i = 0;
+        // while(i < 32){
+        //     System.out.println(i);
+        //     i++;
+        // }
+
+        // int i = 0;
+        // do {
+        //     System.out.println(i);
+        //     i++;
+        // }while(i < 32);
+  
     }
 
     private static void printBinaty(long value, int size) {
