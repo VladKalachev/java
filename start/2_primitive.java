@@ -12,7 +12,7 @@
  */
 
 
-public class primitive {
+class primitive {
 
     public static void main(String[] args) {
         // System.out.println("Hello World");
