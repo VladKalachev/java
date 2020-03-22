@@ -15,17 +15,17 @@ public class Main {
 
     public static void main(String[] args) {
 
-        MyFirstClass printer = createPrinter(16);
-
-        System.out.println("Size:" + printer.getSize());
-
-        printer.printBinary(12);
-
-        System.out.println(printer.name);
-
-        // printer.setSize(-1);
-
-        doPrint(printer, -1);
+//        MyFirstClass printer = createPrinter(16);
+//
+//        System.out.println("Size:" + printer.getSize());
+//
+//        printer.printBinary(12);
+//
+//        System.out.println(printer.name);
+//
+//        // printer.setSize(-1);
+//
+//        doPrint(printer, -1);
     }
 
     public static MyFirstClass createPrinter(int size){
