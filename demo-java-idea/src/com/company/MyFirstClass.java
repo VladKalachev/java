@@ -1,7 +1,10 @@
 package com.company;
 
 public class MyFirstClass {
-    private int size = 0;
+
+    private static int DEFAULT_SIZE = 0;
+    private int size = DEFAULT_SIZE;
+    public String name = "MyFirstClass";
 
     MyFirstClass(int size){
         this.size = size;
@@ -11,6 +14,7 @@ public class MyFirstClass {
         System.out.println("Hello My Firs Class");
     }
 
+    // package visible
     void printBinary(long value){
         for (int i = size - 1; i >= 0; i--) {
             long mask = 1L << i;
@@ -24,7 +28,10 @@ public class MyFirstClass {
         return size;
     }
 
-    void setSize(int size){
+    void setSize(int size) throws Exception {
+        if(size <= 0) {
+            throw new Exception("Illeagel size: " + size);
+        }
         this.size = size;
     }
 }
