@@ -1,5 +1,7 @@
 package com.company;
 
+import com.company.inheritance.TimeSupplierInterface;
+
 /**
  *  Ссылочные типы данных и обработка ошибок
  *  Создаем в хипе класс при его вызове через new
@@ -40,4 +42,5 @@ public class Main {
             e.printStackTrace();
         }
     }
+
 }
