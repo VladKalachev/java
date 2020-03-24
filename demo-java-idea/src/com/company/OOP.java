@@ -1,13 +1,14 @@
 package com.company;
 
 import com.company.inheritance.POSIXTimeSupplier;
-import com.company.inheritance.TimeSupplier;
+import com.company.inheritance.TimeSupplierInterface;
+import com.company.references.TimeHolder;
 
 /**
  * Объектно-ориентированное программирование
  *
  * Наследование extends
- * Полиморфизм
+ * Полиморфизм - подмена методов
  * Абстракция, интерфейс, implements
  * Ссылки между объектами
  * Инкапсуляция, модификация доступа
@@ -15,11 +16,13 @@ import com.company.inheritance.TimeSupplier;
  * Generics
  */
 public class OOP {
-    private void printTime(TimeSupplier timeSupplier) {
+    private void printTime(TimeSupplierInterface timeSupplier) {
         System.out.println("POSIX time:" + timeSupplier.getTime());
     }
     public static void main(String[] args){
-        TimeSupplier timeSupplier = new POSIXTimeSupplier();
-        new OOP().printTime(timeSupplier);
+        TimeSupplierInterface timeSupplier = new POSIXTimeSupplier();
+//        new OOP().printTime(timeSupplier);
+        TimeHolder holder = new TimeHolder(timeSupplier);
+        holder.printTime();
     }
 }
