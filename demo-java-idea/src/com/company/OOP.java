@@ -13,7 +13,7 @@ import com.company.references.TimeHolder;
  * Ссылки между объектами
  * Инкапсуляция, модификация доступа
  * Ключевое слово this и super
- * Generics
+ * Generics (классы, методы)
  */
 
 /**
@@ -24,6 +24,7 @@ import com.company.references.TimeHolder;
  *  no modifier / Y     / Y       / N        / N
  *  private     / Y     / N       / N        / N
  */
+
 public class OOP {
     private void printTime(TimeSupplierInterface timeSupplier) {
         System.out.println("POSIX time:" + timeSupplier.getTime());
