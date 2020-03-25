@@ -1,11 +1,11 @@
 package com.company.bad;
 
-public class Bird {
+public class Crow {
     private final String name;
     private boolean isFlying;
 
-    public Bird(String name) {
-        this.name = name;
+    public Crow(String name) {
+        this.name = "Crow";
         this.isFlying = false;
     }
 
@@ -14,9 +14,6 @@ public class Bird {
     }
 
     public void feed(){
-        if(name.equals("Blackbird"))
-            isFlying = true;
-        else
             isFlying = false;
     }
 
@@ -31,5 +28,4 @@ public class Bird {
                 ", isFlying=" + isFlying +
                 '}';
     }
-
 }
