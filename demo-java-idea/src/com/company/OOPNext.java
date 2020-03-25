@@ -1,6 +1,9 @@
 package com.company;
 
-import com.company.bad.Bird;
+import com.company.good.Bird;
+import com.company.good.Blackbird;
+import com.company.good.Crow;
+
 /**
  * Концепции ООП
  *
@@ -14,6 +17,16 @@ import com.company.bad.Bird;
  * Нотации UML
  * Базовые паттерны
  */
+
+/**
+ * Базовые паттерны
+ * - Singleton
+ * - Template method
+ * - Factory method
+ * - Adapter
+ * - Observer
+ */
+
 public class OOPNext {
 
     public static void main(String[] args) {
@@ -26,11 +39,12 @@ public class OOPNext {
          */
 
         Bird[] birds = new Bird[]{
-                new Bird("Crow"),
-                new Bird("Blacbird")
+                new Crow("Crow"),
+                new Blackbird("Blacbird")
         };
-//        Bird bird1 = new Bird("Crow");
-//        Bird bird2 = new Bird("Blacbird");
+
+        birds[0].feed();
+        birds[1].feed();
 
         new OOPNext().print(birds);
     }
@@ -40,7 +54,7 @@ public class OOPNext {
 //            birds[i];
 //        }
         for(Bird bird: birds){
-            System.out.println(bird.getName());
+            System.out.println(bird.toString());
         }
     }
 

@@ -1,6 +1,6 @@
 package com.company.good;
 
-public class Bird {
+public abstract class Bird {
     private boolean isFlying;
     private final String name;
 
@@ -17,7 +17,17 @@ public class Bird {
         return isFlying;
     }
 
-    public void feed() {
+    public abstract void feed();
 
+    protected void setFlying(boolean flying) {
+        isFlying = flying;
+    }
+
+    @Override
+    public String toString() {
+        return "Bird{" +
+                "isFlying=" + isFlying +
+                ", name='" + name + '\'' +
+                '}';
     }
 }
