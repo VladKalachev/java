@@ -22,4 +22,10 @@ public class BirdTest {
         Bird bird = new Crow("Mag");
         Assert.assertTrue(bird.toString().contains("Mag"));
     }
+
+    @Test(expected = RuntimeException.class)
+    public void wrongNameTest(){
+        Bird bird = new Crow("");
+    }
+
 }

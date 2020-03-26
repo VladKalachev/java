@@ -5,6 +5,9 @@ public abstract class Bird {
     private final String name;
 
     public Bird(String name) {
+        if(name.isEmpty()){
+            throw new RuntimeException("Name cam't be empty");
+        }
         this.isFlying = false;
         this.name = name;
     }
