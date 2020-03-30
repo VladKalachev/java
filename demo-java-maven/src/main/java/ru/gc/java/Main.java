@@ -16,6 +16,24 @@ import java.util.logging.Logger;
  * GC roots
  * Типы ссылок
  */
+
+/**
+ * GC
+ *              Young               / Old
+ * Serial     / Copy                / MarkSweepCompact
+ * Parallel   / PS Scavenge         / PS MarkSweep
+ * Concurrent / ParNew              / ConcurrentMarkSweep
+ * G1         / G1 Young Generation / G1 Mixed Generation
+ */
+
+/**
+ * Типы ссылок
+ *
+ *  Strong references
+ *  Weak references
+ *  Soft references
+ *  Phantom references
+ */
 public class Main {
     private static Logger logger = Logger.getLogger(Main.class.getName());
     public static void main(String[] args) {
