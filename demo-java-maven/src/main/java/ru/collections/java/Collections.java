@@ -2,6 +2,16 @@ package ru.collections.java;
 
 import java.util.*;
 
+class Person {
+    String name;
+    int age;
+
+    public Person(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+}
+
 public class Collections {
     public static void main(String[] args) {
         Collection<String> c = new ArrayList<>();
@@ -39,6 +49,28 @@ public class Collections {
                 iterator2.remove();
             }
         }
+
+        // HashSet
+        Set<Person> set = new HashSet<>();
+        set.add(new Person("First", 25));
+        set.add(new Person("Seconsd", 20));
+        set.add(new Person("Third", 30));
+        set.add(new Person("Forth", 35));
+        print(set);
+        System.out.println(set.contains(new Person("First", 25)));
+
+        // Map
+        Map<String, String> map = new HashMap<>();
+        map.put("Ivanov", "12123");
+        map.put("Sidorov", "23-345");
+        map.put("Petrov", "345-5");
+        System.out.println(map.get("Ivanov"));
+        for(String key: map.keySet()) {
+            String value = map.get(key);
+            System.out.println(key + "=" + value);
+        }
+        System.out.println(map.containsKey("Petrov"));
+
     }
 
     private static void print(Collection<?> list) {
