@@ -71,6 +71,7 @@ public class Collections {
         }
         System.out.println(map.containsKey("Petrov"));
 
+
     }
 
     private static void print(Collection<?> list) {
