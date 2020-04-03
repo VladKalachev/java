@@ -5,6 +5,7 @@ import java.io.IOException;
 
 /**
  * input/outpute
+ * streams
  */
 public class Main {
 
