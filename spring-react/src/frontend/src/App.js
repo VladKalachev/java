@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import { getAllStudents } from './client';
+import {
+  Table
+} from 'antd';
 
 function App() {
 
@@ -19,26 +22,43 @@ function App() {
     });
   }
 
+//   studentId: "2e1df151-837a-4fe3-b277-38ba793d8782"
+// firsName: "James"
+// lastName: "Bond"
+// email: "jamesbond@gmail.com"
+// gender: "MALE"
+
   if(studenst && studenst.length){
+
+    const columns = [
+      {
+        title: 'FirsName',
+        dataIndex: 'firsName',
+        key: 'firsName',
+      },
+      {
+        title: 'LastName',
+        dataIndex: 'lastName',
+        key: 'lastName',
+      },
+      {
+        title: 'Email',
+        dataIndex: 'email',
+        key: 'email',
+      },
+       {
+        title: 'Gender',
+        dataIndex: 'gender',
+        key: 'gender',
+      }
+    ];
+
     return (
-      <div>
-      {/* <h1>Hello World Spring Boot & React</h1>
-      <button onClick={fetchStudents}>Get Students</button> */}
-      <div>
-        {
-          studenst.map(({studentId, firsName, lastName, email, gender}) => {
-            return (
-              <div key={studentId}>
-                <div>{firsName}</div>
-                <div>{lastName}</div>
-                <div>{email}</div>
-                <div>{gender}</div>
-              </div>
-              )
-          })
-        }
-      </div>
-    </div>
+      <Table 
+        dataSource={studenst} 
+        columns={columns}
+        rowKey="studentId"
+      />
     )
   }
 
