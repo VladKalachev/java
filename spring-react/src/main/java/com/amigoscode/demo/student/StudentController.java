@@ -9,14 +9,26 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("student")
+@RequestMapping("students")
 public class StudentController {
 
     @GetMapping
     public List<Student> getAllStudensts() {
         return Arrays.asList(
-                new Student(UUID.randomUUID(), "James", "Bond", "jamesbond@gmail.com", Student.Gender.MALE),
-                new Student(UUID.randomUUID(), "Elisa", "Tamara", "elisatamara@gmail.com", Student.Gender.FEMALE)
+                new Student(
+                        UUID.randomUUID(),
+                        "James",
+                        "Bond",
+                        "jamesbond@gmail.com",
+                        Student.Gender.MALE
+                ),
+                new Student(
+                        UUID.randomUUID(),
+                        "Elisa",
+                        "Tamara",
+                        "elisatamara@gmail.com",
+                        Student.Gender.FEMALE
+                )
         );
     }
 
