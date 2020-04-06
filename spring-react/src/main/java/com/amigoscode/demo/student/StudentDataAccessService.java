@@ -2,6 +2,7 @@ package com.amigoscode.demo.student;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import java.util.Arrays;
@@ -18,17 +19,25 @@ public class StudentDataAccessService {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public List<Student> selectAllStudents() {
+    List<Student> selectAllStudents() {
         String sql = "" +
-                "SELECT" +
+                "SELECT " +
                 "student_id, " +
                 "first_name, " +
                 "last_name, " +
-                "email ," +
+                "email, " +
                 "gender " +
                 "FROM student";
 
-        return jdbcTemplate.query(sql, (resultSet, i) -> {
+        return jdbcTemplate.query(sql, mapStudentFromDb());
+
+        // select uid, name from table
+        // some_uid, john, result set -> student (some_uid, john)
+        // some_uid, maria, result set -> student (some_uid, maria)
+    }
+
+    private RowMapper<Student> mapStudentFromDb() {
+        return (resultSet, i) -> {
             String studentIdStr = resultSet.getString("student_id");
             UUID studentId = UUID.fromString(studentIdStr);
 
@@ -46,10 +55,6 @@ public class StudentDataAccessService {
                     email,
                     gender
             );
-        });
-
-        // select uid, name from table
-        // some_uid, john, result set -> student (some_uid, john)
-        // some_uid, maria, result set -> student (some_uid, maria)
+        };
     }
 }
