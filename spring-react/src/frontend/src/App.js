@@ -1,36 +1,64 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import { getAllStudents } from './client';
+import Container from './Container';
 import {
-  Table
+  Table,
+  Avatar,
+  Spin,
+  
 } from 'antd';
+import { LoadingOutlined } from '@ant-design/icons';
+
+const antIcon = () => <LoadingOutlined style={{ fontSize: 24 }} spin />;
 
 function App() {
 
   const [studenst, setStudenst] = useState([]);
+  const [isFetching, setFetching] = useState(false);
 
   useEffect(() => {
     fetchStudents();
   }, [])
 
   const fetchStudents = () => {
+    setFetching(true);
     getAllStudents()
       .then(res => res.json())
       .then(students => {
         console.log(students);
         setStudenst(students);
+        setFetching(false);
     });
   }
-
-//   studentId: "2e1df151-837a-4fe3-b277-38ba793d8782"
-// firsName: "James"
-// lastName: "Bond"
-// email: "jamesbond@gmail.com"
-// gender: "MALE"
+  if(isFetching) {
+    return (
+      <Container>
+        <Spin indicator={antIcon()} />
+      </Container>
+    )
+  }
 
   if(studenst && studenst.length){
 
     const columns = [
+      {
+        title: '',
+        key: 'avatar',
+        render: (text, student) => {
+          console.log(student);
+          return (
+            <Avatar size="large">
+            {`${student.firsName.charAt(0).toUpperCase()} ${student.lastName.charAt(0).toUpperCase()}`}
+          </Avatar>
+          )
+        }
+      },
+      {
+        title: 'Student Id',
+        dataIndex: 'studentId',
+        key: 'studentId'
+      },
       {
         title: 'FirsName',
         dataIndex: 'firsName',
@@ -54,11 +82,14 @@ function App() {
     ];
 
     return (
-      <Table 
-        dataSource={studenst} 
-        columns={columns}
-        rowKey="studentId"
-      />
+      <Container>
+        <Table 
+          dataSource={studenst} 
+          columns={columns}
+          pagination={false}
+          rowKey="studentId"
+        />
+      </Container>
     )
   }
 
