@@ -1,19 +1,21 @@
 import React from 'react';
 import { Formik } from 'formik';
 import { Input, Button, Tag } from 'antd';
+import { addNewStudent } from '../client';
 
 const inputBottomMargin = {marginBottom: '10px'};
 const tagStyle = {backgroundColor: '#f50', color: 'white', ...inputBottomMargin}
+
 const AddStudentForm = () => (
     <div>
     <h1>Anywhere in your app!</h1>
     <Formik
-      initialValues={{ firstName: '', lastName: '', email: '', gender: '' }}
+      initialValues={{ firsName: '', lastName: '', email: '', gender: '' }}
       validate={values => {
         const errors = {};
         
-        if(!values.firstName){
-            errors.firstName = 'First Name Required';
+        if(!values.firsName){
+            errors.firsName = 'First Name Required';
         }
 
         if(!values.lastName){
@@ -36,10 +38,12 @@ const AddStudentForm = () => (
       
         return errors;
       }}
-      onSubmit={(values, { setSubmitting }) => {
+      onSubmit={(student, { setSubmitting }) => {
         setTimeout(() => {
-          alert(JSON.stringify(values, null, 2));
-          setSubmitting(false);
+          addNewStudent(student).then(() => {
+            alert(JSON.stringify(student));
+            setSubmitting(false);
+          });
         }, 400);
       }}
     >
@@ -59,13 +63,13 @@ const AddStudentForm = () => (
 
           <Input
             style={inputBottomMargin}
-            name="firstName"
+            name="firsName"
             onChange={handleChange}
             onBlur={handleBlur}
-            value={values.firstName}
+            value={values.firsName}
             placeholder='First Name. E.g John'
           />
-          {errors.firstName && touched.firstName && <Tag style={tagStyle}>{errors.firstName}</Tag>}
+          {errors.firsName && touched.firsName && <Tag style={tagStyle}>{errors.firsName}</Tag>}
 
           <Input
             style={inputBottomMargin}

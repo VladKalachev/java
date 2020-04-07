@@ -1,9 +1,7 @@
 package com.amigoscode.demo.student;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -18,10 +16,17 @@ public class StudentController {
         this.studentService = studentService;
     }
 
-
+    // GET
     @GetMapping
     public List<Student> getAllStudensts() {
         return studentService.getAllStudents();
+    }
+
+    // POST
+    @PostMapping
+    public void addNewStudent(@RequestBody Student student) {
+       studentService.addNewStudent(null, student);
+        //System.out.println(student);
     }
 
 }

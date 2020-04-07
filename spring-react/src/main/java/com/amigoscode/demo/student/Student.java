@@ -1,5 +1,7 @@
 package com.amigoscode.demo.student;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.UUID;
 
 public class Student {
@@ -9,7 +11,11 @@ public class Student {
     private final String email;
     private final Gender gender;
 
-    public Student(UUID studentId, String firsName, String lastName, String email, Gender gender) {
+    public Student(@JsonProperty("studentId") UUID studentId,
+                   @JsonProperty("firsName") String firsName,
+                   @JsonProperty("lastName") String lastName,
+                   @JsonProperty("email") String email,
+                   @JsonProperty("gender") Gender gender) {
         this.studentId = studentId;
         this.firsName = firsName;
         this.lastName = lastName;
@@ -35,6 +41,17 @@ public class Student {
 
     public Gender getGender() {
         return gender;
+    }
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "studentId=" + studentId +
+                ", firsName='" + firsName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", gender=" + gender +
+                '}';
     }
 
     enum Gender {
