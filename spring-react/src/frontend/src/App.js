@@ -2,11 +2,13 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import { getAllStudents } from './client';
 import Container from './Container';
+import Footer from './Footer';
+import AddStudentForm from './forms/AddStudentForm';
 import {
   Table,
   Avatar,
   Spin,
-  
+  Modal
 } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
 
@@ -16,6 +18,7 @@ function App() {
 
   const [studenst, setStudenst] = useState([]);
   const [isFetching, setFetching] = useState(false);
+  const [isAddStudentModalVisible, setModalVisible] = useState(false);
 
   useEffect(() => {
     fetchStudents();
@@ -31,6 +34,11 @@ function App() {
         setFetching(false);
     });
   }
+
+// Modal
+ const openModalStudent = () => setModalVisible(true);
+ const closeModalStudent = () => setModalVisible(false);
+
   if(isFetching) {
     return (
       <Container>
@@ -46,7 +54,6 @@ function App() {
         title: '',
         key: 'avatar',
         render: (text, student) => {
-          console.log(student);
           return (
             <Avatar size="large">
             {`${student.firsName.charAt(0).toUpperCase()} ${student.lastName.charAt(0).toUpperCase()}`}
@@ -89,6 +96,16 @@ function App() {
           pagination={false}
           rowKey="studentId"
         />
+        <Modal 
+          title='Add new student'
+          visible={isAddStudentModalVisible}
+          onOk={closeModalStudent}
+          onCancel={closeModalStudent}
+          width={1000}
+          >
+            <AddStudentForm/>
+            </Modal>
+        <Footer numberOfStudents={studenst.length} openModal={openModalStudent} />
       </Container>
     )
   }
