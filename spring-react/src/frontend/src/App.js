@@ -8,8 +8,10 @@ import {
   Table,
   Avatar,
   Spin,
-  Modal
+  Modal,
+  Empty
 } from 'antd';
+import { errorNotification } from './Notification';
 import { LoadingOutlined } from '@ant-design/icons';
 
 const antIcon = () => <LoadingOutlined style={{ fontSize: 24 }} spin />;
@@ -32,12 +34,37 @@ function App() {
         console.log(students);
         setStudenst(students);
         setFetching(false);
-    });
+      })
+      .catch(error => {
+          console.log(error.error.message);
+          const message = error.error.message;
+          const description = error.error.error;
+          errorNotification(message, description);
+          setFetching(false);
+      });
   }
 
 // Modal
  const openModalStudent = () => setModalVisible(true);
  const closeModalStudent = () => setModalVisible(false);
+
+  const comminElement = () => (
+    <>
+      <Modal 
+        title='Add new student'
+        visible={isAddStudentModalVisible}
+        onOk={closeModalStudent}
+        onCancel={closeModalStudent}
+        width={1000}
+        >
+      <AddStudentForm onSuccess={() => { 
+        closeModalStudent();
+        fetchStudents();
+      }}/>
+      </Modal>
+      <Footer numberOfStudents={studenst.length} openModal={openModalStudent} />
+      </>
+  );
 
   if(isFetching) {
     return (
@@ -94,23 +121,22 @@ function App() {
           dataSource={studenst} 
           columns={columns}
           pagination={false}
+          
           rowKey="studentId"
         />
-        <Modal 
-          title='Add new student'
-          visible={isAddStudentModalVisible}
-          onOk={closeModalStudent}
-          onCancel={closeModalStudent}
-          width={1000}
-          >
-            <AddStudentForm/>
-            </Modal>
-        <Footer numberOfStudents={studenst.length} openModal={openModalStudent} />
+       {comminElement()}
       </Container>
     )
   }
 
-  return "No Students found";
+  return (
+    <Container>
+      <Empty description={
+        <h1>No Stidents found</h1>
+      }/>
+       {comminElement()}
+    </Container>
+  );
 }
 
 export default App;

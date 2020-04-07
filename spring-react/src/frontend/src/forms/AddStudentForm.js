@@ -6,7 +6,7 @@ import { addNewStudent } from '../client';
 const inputBottomMargin = {marginBottom: '10px'};
 const tagStyle = {backgroundColor: '#f50', color: 'white', ...inputBottomMargin}
 
-const AddStudentForm = () => (
+const AddStudentForm = (props) => (
     <div>
     <h1>Anywhere in your app!</h1>
     <Formik
@@ -41,7 +41,7 @@ const AddStudentForm = () => (
       onSubmit={(student, { setSubmitting }) => {
         setTimeout(() => {
           addNewStudent(student).then(() => {
-            alert(JSON.stringify(student));
+            props.onSuccess();
             setSubmitting(false);
           });
         }, 400);
