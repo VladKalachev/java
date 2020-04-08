@@ -36,7 +36,7 @@ function App() {
         setFetching(false);
       })
       .catch(error => {
-          console.log(error.error.message);
+          console.log(error);
           const message = error.error.message;
           const description = error.error.error;
           errorNotification(message, description);

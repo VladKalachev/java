@@ -50,7 +50,7 @@ public class StudentDataAccessService {
                 student.getFirsName(),
                 student.getLastName(),
                 student.getEmail(),
-                student.getGender().name().toUpperCase()
+                student.getGender()
         );
     }
 
