@@ -1,21 +1,21 @@
 import React from 'react';
 import { notification } from 'antd';
 
-const openNotification= (type, message, desciption) => {
+const openNotification= (type, message, description) => {
     notification[type]({
         message,
-        desciption
+        description
     });
 };
 
-export const successNotification = (message, desciption) =>
-    openNotification('sucess', message, desciption);
+export const successNotification = (message, description) =>
+    openNotification('sucess', message, description);
 
-export const infoNotification = (message, desciption) =>
-    openNotification('info', message, desciption);
+export const infoNotification = (message, description) =>
+    openNotification('info', message, description);
 
-export const warningNotification = (message, desciption) =>
-    openNotification('warning', message, desciption);
+export const warningNotification = (message, description) =>
+    openNotification('warning', message, description);
 
-export const errorNotification = (message, desciption) =>
-    openNotification('error', message, desciption);
+export const errorNotification = (message, description) =>
+    openNotification('error', message, description);

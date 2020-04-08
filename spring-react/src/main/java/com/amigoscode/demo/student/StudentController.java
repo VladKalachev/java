@@ -21,8 +21,7 @@ public class StudentController {
     // GET
     @GetMapping
     public List<Student> getAllStudensts() {
-        throw  new ApiRequestException("Oops cannot get all students with custom exception");
-       // return studentService.getAllStudents();
+        return studentService.getAllStudents();
     }
 
     // POST

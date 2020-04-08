@@ -57,10 +57,17 @@ function App() {
         onCancel={closeModalStudent}
         width={1000}
         >
-      <AddStudentForm onSuccess={() => { 
-        closeModalStudent();
-        fetchStudents();
-      }}/>
+      <AddStudentForm 
+        onSuccess={() => { 
+          closeModalStudent();
+          fetchStudents();
+        }}
+        onFailure={(error) => {
+          const message = error.error.message;
+          const description = error.error.httpStatus;
+          console.log(JSON.stringify(error));
+          errorNotification(message, description);
+        }}/>
       </Modal>
       <Footer numberOfStudents={studenst.length} openModal={openModalStudent} />
       </>
