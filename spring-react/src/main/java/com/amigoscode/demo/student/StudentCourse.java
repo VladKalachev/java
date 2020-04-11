@@ -8,7 +8,7 @@ public class StudentCourse {
     private final UUID studentId;
     private final UUID courseId;
     private final String name;
-    private final String description;
+    private final String descriptio;
     private final String department;
     private final String teacherName;
     private final LocalDate startDate;
@@ -18,7 +18,7 @@ public class StudentCourse {
     public StudentCourse(UUID studentId,
                          UUID courseId,
                          String name,
-                         String description,
+                         String descriptio,
                          String department,
                          String teacherName,
                          LocalDate startDate,
@@ -27,7 +27,7 @@ public class StudentCourse {
         this.studentId = studentId;
         this.courseId = courseId;
         this.name = name;
-        this.description = description;
+        this.descriptio = descriptio;
         this.department = department;
         this.teacherName = teacherName;
         this.startDate = startDate;
@@ -48,7 +48,7 @@ public class StudentCourse {
     }
 
     public String getDescription() {
-        return description;
+        return descriptio;
     }
 
     public String getDepartment() {
