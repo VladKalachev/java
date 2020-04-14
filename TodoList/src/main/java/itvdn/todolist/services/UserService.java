@@ -24,17 +24,26 @@ public class UserService implements IUserService {
         jdbcTemplate.execute("CREATE TABLE Users(Id LONG, Email VARCHAR(30), Password VARCHAR(30))");
     }
 
+//    @Override
+//    public List<User> getUserAll() {
+//        String sql = "SELECT * FROM Users";
+//        return jdbcTemplate.query(
+//                sql,
+//                (rs, rowNum) ->
+//                    new User(
+//                            rs.getLong("id"),
+//                            rs.getString("email"),
+//                            rs.getString("password")
+//                    )
+//            );
+//    }
+
     @Override
     public List<User> getUserAll() {
         String sql = "SELECT * FROM Users";
         return jdbcTemplate.query(
                 sql,
-                (rs, rowNum) ->
-                    new User(
-                            rs.getLong("id"),
-                            rs.getString("email"),
-                            rs.getString("password")
-                    )
+                new BeanPropertyRowMapper<>(User.class)
             );
     }
 

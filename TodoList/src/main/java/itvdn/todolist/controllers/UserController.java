@@ -33,10 +33,10 @@ public class UserController {
     }
 
     @GetMapping(path = "user/getAll")
-    public void getUserAll() {
+    public List<User> getUserAll() {
         List<User> result = userService.getUserAll();
         System.out.println(result);
-        //return new ResponseEntity<>(result, HttpStatus.OK);
+        return userService.getUserAll();
     }
 
     @GetMapping(path = "/user/get/{id}")
