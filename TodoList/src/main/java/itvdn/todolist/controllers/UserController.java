@@ -8,6 +8,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 public class UserController {
 
@@ -28,6 +30,13 @@ public class UserController {
     public ResponseEntity<Integer> createUser(@RequestBody User user) {
         int result = userService.createUser(user);
         return new ResponseEntity<>(result, HttpStatus.CREATED);
+    }
+
+    @GetMapping(path = "user/getAll")
+    public void getUserAll() {
+        List<User> result = userService.getUserAll();
+        System.out.println(result);
+        //return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
     @GetMapping(path = "/user/get/{id}")

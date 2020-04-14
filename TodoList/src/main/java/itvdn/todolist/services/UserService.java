@@ -7,6 +7,8 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UserService implements IUserService {
 
@@ -23,11 +25,27 @@ public class UserService implements IUserService {
     }
 
     @Override
+    public List<User> getUserAll() {
+        String sql = "SELECT * FROM Users";
+        return jdbcTemplate.query(
+                sql,
+                (rs, rowNum) ->
+                    new User(
+                            rs.getLong("id"),
+                            rs.getString("email"),
+                            rs.getString("password")
+                    )
+            );
+    }
+
+    @Override
     public int createUser(User user) {
         String query = "INSERT INTO Users VALUES(" + user.getId() + ",'" + user.getEmail() + "','" + user.getPassword() + "')";
         int result = jdbcTemplate.update(query);
         return result;
     }
+
+
 
     @Override
     public User getUser(long id) {

@@ -8,6 +8,12 @@ public class User {
     String email;
     String password;
 
+    public User(long id, String email, String password) {
+        this.id = id;
+        this.email = email;
+        this.password = password;
+    }
+
     public long getId() {
         return id;
     }
