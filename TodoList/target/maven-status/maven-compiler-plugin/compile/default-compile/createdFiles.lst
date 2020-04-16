@@ -1,4 +1,6 @@
 itvdn/todolist/services/interfaces/IUserService.class
 itvdn/todolist/controllers/UserController.class
 itvdn/todolist/domain/User.class
+itvdn/todolist/domain/Todo.class
+itvdn/todolist/domain/Prioriry.class
 itvdn/todolist/services/UserService.class
