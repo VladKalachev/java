@@ -2,7 +2,9 @@ package itvdn.todolist.domain;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "TODO")
@@ -36,7 +38,9 @@ public class Todo {
     @JoinColumn(name = "USER_ID", nullable = false)
     private User user;
 
-    private Teg tag;
+    @ManyToMany
+    @JoinTable(name = "TODO_TAG", joinColumns = @JoinColumn(name = "TODO_ID"), inverseJoinColumns = @JoinColumn(name= "TAG_ID"))
+    private Set<Tag> tagList = new HashSet<>();
 
     public long getId() {
         return id;
@@ -120,6 +124,34 @@ public class Todo {
             return;
         }
         user.removeTodo(this, true);
+    }
+
+    public Set<Tag> getTagList() {
+        return tagList;
+    }
+
+    public void addTag(Tag tag) {
+        addTag(tag, false);
+    }
+
+    public void addTag(Tag tag, boolean otherSideHasBeenSet) {
+        this.getTagList().add(tag);
+        if(otherSideHasBeenSet) {
+            return;
+        }
+        tag.addTodo(this, true);
+    }
+
+    public void removeTag(Tag tag) {
+        removeTag(tag, false);
+    }
+
+    public void removeTag(Tag tag, boolean otherSideHasBeenSet) {
+        this.getTagList().remove(tag);
+        if(otherSideHasBeenSet) {
+            return;
+        }
+        tag.removeTodo(this, true);
     }
 
     @Override
