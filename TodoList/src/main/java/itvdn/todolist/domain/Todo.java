@@ -32,6 +32,12 @@ public class Todo {
     @Enumerated(EnumType.STRING)
     private Prioriry prioriry;
 
+    @ManyToOne
+    @JoinColumn(name = "USER_ID", nullable = false)
+    private User user;
+
+    private Teg tag;
+
     public long getId() {
         return id;
     }
@@ -86,6 +92,34 @@ public class Todo {
 
     public void setPrioriry(Prioriry prioriry) {
         this.prioriry = prioriry;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user){
+        setUser(user, false);
+    }
+
+    public void setUser(User user, boolean otherSideHasBeenSet) {
+        this.user = user;
+        if(otherSideHasBeenSet) {
+            return;
+        }
+        user.addTodo(this, true);
+    }
+
+    public void removeUser(User user){
+        setUser(user, false);
+    }
+
+    public void removeUser(User user, boolean otherSideHasBeenSet) {
+        this.user = null;
+        if(otherSideHasBeenSet) {
+            return;
+        }
+        user.removeTodo(this, true);
     }
 
     @Override

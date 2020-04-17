@@ -1,7 +1,9 @@
 package itvdn.todolist.domain;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "_USER")
@@ -17,6 +19,9 @@ public class User {
 
     @Column(name = "PASSWORD", nullable = false)
     private String password;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Set<Todo> todoList = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -40,6 +45,34 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Set<Todo> getTodoList() {
+        return todoList;
+    }
+
+    public void addTodo(Todo todo) {
+            addTodo(todo, false);
+    }
+
+    public void addTodo(Todo todo, boolean otherSideHasBeenSet) {
+        this.getTodoList().add(todo);
+        if(otherSideHasBeenSet) {
+            return;
+        }
+        todo.setUser(this, true);
+    }
+
+    public void removeTodo(Todo todo) {
+        removeTodo(todo, false);
+    }
+
+    public void removeTodo(Todo todo, boolean otherSideHasBeenSet) {
+        this.getTodoList().remove(todo);
+        if(otherSideHasBeenSet) {
+            return;
+        }
+        todo.removeUser(this, true);
     }
 
     @Override

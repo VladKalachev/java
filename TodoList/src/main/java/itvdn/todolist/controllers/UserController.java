@@ -19,6 +19,11 @@ public class UserController {
         this.userService = userService;
     }
 
+    @GetMapping(path = "/test")
+    public ResponseEntity<String> createTest(){
+        return new ResponseEntity<>("Test", HttpStatus.OK);
+    };
+
     @PostMapping(path = "/user")
     public ResponseEntity<User> createUser(@RequestBody User user) {
         System.out.println(user);
