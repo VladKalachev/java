@@ -2,9 +2,12 @@ package itvdn.todolist.services.interfaces;
 
 import itvdn.todolist.domain.User;
 
+import java.util.List;
+
 public interface IUserService {
-    int createUser(User user);
+    User createUser(User user);
     User getUser(long id);
-    int updateUser(User user, long id);
-    int deleteUser(long id);
+    List<User> getAllUser();
+    User updateUser(User user, long id);
+    User deleteUser(long id);
 }

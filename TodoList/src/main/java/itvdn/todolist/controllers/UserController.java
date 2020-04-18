@@ -24,10 +24,10 @@ public class UserController {
         return new ResponseEntity<>("Test", HttpStatus.OK);
     };
 
-    @PostMapping(path = "/user")
+    @PostMapping(path = "/user/create")
     public ResponseEntity<User> createUser(@RequestBody User user) {
-        System.out.println(user);
-        return new ResponseEntity<>(user, HttpStatus.OK);
+        User result = userService.createUser(user);
+        return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
     @PostMapping(path = "/todo")

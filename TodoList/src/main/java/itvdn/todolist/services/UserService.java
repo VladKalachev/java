@@ -7,16 +7,44 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import java.util.List;
+
 @Service
 public class UserService implements IUserService {
 
+    private final EntityManagerFactory entityManagerFactory;
+
     @Autowired
-    public UserService() {
+    public UserService(EntityManagerFactory entityManagerFactory) {
+        this.entityManagerFactory = entityManagerFactory;
     }
 
     @Override
-    public int createUser(User user) {
-        return 0;
+    public User createUser(User user) {
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+
+        entityManager.getTransaction().begin();
+        try {
+            entityManager.persist(user);
+
+            User result = new User();
+            result.setId(user.getId());
+            result.setEmail(user.getEmail());
+            result.setPassword(user.getPassword());
+
+            entityManager.getTransaction().commit();
+            return result;
+        } finally {
+            if(entityManager.getTransaction().isActive()){
+                entityManager.getTransaction().rollback();
+            }
+            if(entityManager.isOpen()){
+                entityManager.close();
+            }
+            entityManager.close();
+        }
     }
 
     @Override
@@ -25,14 +53,19 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public int updateUser(User updatedUser, long id) {
-
-        return 0;
+    public List<User> getAllUser() {
+        return null;
     }
 
     @Override
-    public int deleteUser(long id) {
+    public User updateUser(User updatedUser, long id) {
 
-        return 0;
+        return null;
+    }
+
+    @Override
+    public User deleteUser(long id) {
+
+        return null;
     }
 }
