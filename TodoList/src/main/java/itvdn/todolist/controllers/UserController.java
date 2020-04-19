@@ -31,4 +31,10 @@ public class UserController {
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
+    @GetMapping(path = "user/all")
+    public ResponseEntity<User> getUserAll() {
+        User result = userService.getAllUser();
+        return new ResponseEntity<>(result, HttpStatus.OK);
+    }
+
 }
