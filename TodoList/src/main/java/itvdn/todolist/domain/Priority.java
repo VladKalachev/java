@@ -1,5 +1,5 @@
 package itvdn.todolist.domain;
 
-public enum Prioriry {
+public enum Priority {
     low, medium, high
 }

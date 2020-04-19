@@ -23,6 +23,22 @@ public class Tag {
         return todoList;
     }
 
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public void addTodo(Todo todo) {
         addTodo(todo, false);
     }

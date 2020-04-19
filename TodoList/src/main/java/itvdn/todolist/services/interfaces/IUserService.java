@@ -1,13 +1,14 @@
 package itvdn.todolist.services.interfaces;
 
+import itvdn.todolist.domain.PlainObjects.UserPojo;
 import itvdn.todolist.domain.User;
 
 import java.util.List;
 
 public interface IUserService {
-    User createUser(User user);
-    User getUser(long id);
-    List<User> getAllUser();
-    User updateUser(User user, long id);
-    User deleteUser(long id);
+    UserPojo createUser(User user);
+    UserPojo getUser(long id);
+    List<UserPojo> getAllUsers();
+    UserPojo updateUser(User user, long id);
+    UserPojo deleteUser(long id);
 }

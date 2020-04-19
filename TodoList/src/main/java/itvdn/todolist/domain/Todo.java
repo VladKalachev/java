@@ -32,7 +32,7 @@ public class Todo {
 
     @Column(name = "PRIORITY")
     @Enumerated(EnumType.STRING)
-    private Prioriry prioriry;
+    private Priority priority;
 
     @ManyToOne
     @JoinColumn(name = "USER_ID", nullable = false)
@@ -90,12 +90,12 @@ public class Todo {
         this.important = important;
     }
 
-    public Prioriry getPrioriry() {
-        return prioriry;
+    public Priority getPriority() {
+        return priority;
     }
 
-    public void setPrioriry(Prioriry prioriry) {
-        this.prioriry = prioriry;
+    public void setPriority(Priority priority) {
+        this.priority = priority;
     }
 
     public User getUser() {
@@ -165,12 +165,12 @@ public class Todo {
                 startDate.equals(todo.startDate) &&
                 endDate.equals(todo.endDate) &&
                 important.equals(todo.important) &&
-                prioriry == todo.prioriry;
+                priority == todo.priority;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, comment, startDate, endDate, important, prioriry);
+        return Objects.hash(id, name, comment, startDate, endDate, important, priority);
     }
 
     @Override
@@ -182,7 +182,7 @@ public class Todo {
                 ", startDate=" + startDate +
                 ", endDate=" + endDate +
                 ", important=" + important +
-                ", prioriry=" + prioriry +
+                ", prioriry=" + priority +
                 '}';
     }
 }
