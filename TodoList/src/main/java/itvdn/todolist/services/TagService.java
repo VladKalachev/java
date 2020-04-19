@@ -3,6 +3,7 @@ package itvdn.todolist.services;
 import itvdn.todolist.domain.Tag;
 import itvdn.todolist.services.interfaces.ITagService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -15,6 +16,7 @@ public class TagService implements ITagService {
     EntityManager entityManager;
 
     @Override
+    @Transactional
     public Tag findOrCreate(Tag tag) {
 
         List<Tag> foundTag = entityManager
