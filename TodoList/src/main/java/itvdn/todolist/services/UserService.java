@@ -49,7 +49,32 @@ public class UserService implements IUserService {
 
     @Override
     public User getUser(long id) {
-        return null;
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+
+        entityManager.getTransaction().begin();
+        try {
+            User fundUser = entityManager
+                    .createQuery("SELECT user FROM User user WHERE user.id = :id", User.class)
+                    .setParameter("id", id)
+                    .getSingleResult();
+
+            User result = new User();
+            result.setId(fundUser.getId());
+            result.setEmail(fundUser.getEmail());
+            result.setPassword(fundUser.getPassword());
+
+            entityManager.getTransaction().commit();
+
+            return result;
+        } finally {
+            if(entityManager.getTransaction().isActive()){
+                entityManager.getTransaction().rollback();
+            }
+            if(entityManager.isOpen()){
+                entityManager.close();
+            }
+            entityManager.close();
+        }
     }
 
     @Override

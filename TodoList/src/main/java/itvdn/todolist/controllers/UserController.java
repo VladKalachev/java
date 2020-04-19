@@ -19,21 +19,16 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping(path = "/test")
-    public ResponseEntity<String> createTest(){
-        return new ResponseEntity<>("Test", HttpStatus.OK);
-    };
-
     @PostMapping(path = "/user/create")
     public ResponseEntity<User> createUser(@RequestBody User user) {
         User result = userService.createUser(user);
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
-    @PostMapping(path = "/todo")
-    public ResponseEntity<Todo> createTodo(@RequestBody Todo todo) {
-        System.out.println(todo);
-        return new ResponseEntity<>(todo, HttpStatus.OK);
+    @GetMapping(path = "/user/{id}")
+    public ResponseEntity<User> getUser(@PathVariable long id) {
+        User result = userService.getUser(id);
+        return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
 }
