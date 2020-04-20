@@ -23,6 +23,7 @@
         <property name="url" value="jdbc:h2:~/TodoListDB"/>
         <property name="username" value="sa"/>
         <property name="password" value="" />
+        <property name="suppressClose" value="true"/>
     </bean>
 
     <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">

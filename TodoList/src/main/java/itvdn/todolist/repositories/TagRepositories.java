@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface TagRepositorues extends CrudRepository<Tag, Long> {
+public interface TagRepositories extends CrudRepository<Tag, Long> {
     List<Tag> findByName(String name);
 }

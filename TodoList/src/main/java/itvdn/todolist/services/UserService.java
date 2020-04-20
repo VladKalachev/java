@@ -48,21 +48,36 @@ public class UserService implements IUserService {
     @Override
     @Transactional(readOnly = true)
     public List<UserPojo> getAllUsers() {
-        List<User> listOfUsers= entityManager.createQuery("SELECT user FROM User user", User.class).getResultList();
+        List<User> listOfUsers = userRepositories.findAll();
 
-        List<UserPojo> result = listOfUsers.stream().map(user -> converter.userToPojo(user)).collect(Collectors.toList());
-        return result;
+        return listOfUsers.stream().map(user -> converter.userToPojo(user)).collect(Collectors.toList());
     }
 
     @Override
-    public UserPojo updateUser(User updatedUser, long id) {
-
-        return null;
+    @Transactional
+    public UserPojo updateUser(User source, long id) {
+        Optional<User> userForUpdateOptional = userRepositories.findById(id);
+        if(userForUpdateOptional.isPresent()) {
+            User target = userForUpdateOptional.get();
+            target.setEmail(source.getEmail());
+            target.setPassword(source.getPassword());
+            userRepositories.save(target);
+            return converter.userToPojo(target);
+        } else {
+            return converter.userToPojo(new User());
+        }
     }
 
     @Override
-    public UserPojo deleteUser(long id) {
+    @Transactional
+    public String deleteUser(long id) {
+        Optional<User> userForDeleteOptional = userRepositories.findById(id);
 
-        return null;
+        if(userForDeleteOptional.isPresent()){
+            userRepositories.delete(userForDeleteOptional.get());
+            return "User with id:" + id + "was successfully remover";
+        } else {
+            return "User with id:" + id + "doesn't exist";
+        }
     }
 }
