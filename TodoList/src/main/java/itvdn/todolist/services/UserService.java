@@ -1,5 +1,6 @@
 package itvdn.todolist.services;
 
+import itvdn.todolist.Exceptions.CustomEmptyDataException;
 import itvdn.todolist.domain.PlainObjects.UserPojo;
 import itvdn.todolist.domain.User;
 import itvdn.todolist.repositories.UserRepositories;
@@ -64,7 +65,7 @@ public class UserService implements IUserService {
             userRepositories.save(target);
             return converter.userToPojo(target);
         } else {
-            return converter.userToPojo(new User());
+            throw new CustomEmptyDataException("unable to update user");
         }
     }
 
@@ -77,7 +78,7 @@ public class UserService implements IUserService {
             userRepositories.delete(userForDeleteOptional.get());
             return "User with id:" + id + "was successfully remover";
         } else {
-            return "User with id:" + id + "doesn't exist";
+            throw new CustomEmptyDataException("unable to delete user");
         }
     }
 }

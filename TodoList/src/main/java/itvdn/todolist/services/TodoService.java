@@ -1,5 +1,6 @@
 package itvdn.todolist.services;
 
+import itvdn.todolist.Exceptions.CustomEmptyDataException;
 import itvdn.todolist.domain.PlainObjects.TodoPojo;
 import itvdn.todolist.domain.Tag;
 import itvdn.todolist.domain.Todo;
@@ -53,7 +54,7 @@ public class TodoService implements ITodoService {
             tags.stream().map(tag -> tagService.findOrCreate(tag)).collect(Collectors.toSet()).forEach(todo::addTag);
             return converter.todoToPojo(todo);
         } else {
-            return converter.todoToPojo(new Todo());
+            throw new CustomEmptyDataException("unable to get user for todo");
         }
 
     }
@@ -87,7 +88,7 @@ public class TodoService implements ITodoService {
 
             return converter.todoToPojo(target);
         } else {
-            return converter.todoToPojo(new Todo());
+            throw new NoSuchElementException("unable to delete todo");
         }
     }
 
@@ -110,8 +111,9 @@ public class TodoService implements ITodoService {
         Optional<User> userOptional = userRepositories.findById(userId);
         if (userOptional.isPresent()) {
             return todoRepositories.findAllByUser(userOptional.get()).stream().map(todo -> converter.todoToPojo(todo)).collect(Collectors.toList());
+        } else {
+            throw new NoSuchElementException("No user with id  + userId +  was found");
         }
-        return new ArrayList<>();
     }
 
 }
