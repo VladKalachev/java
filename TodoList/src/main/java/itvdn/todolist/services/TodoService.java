@@ -61,7 +61,7 @@ public class TodoService implements ITodoService {
 
     @Override
     @Transactional
-    public TodoPojo getTodo(Long id) {
+    public TodoPojo getTodo(Long id, Long userId) {
         Optional<Todo> todoOptional = todoRepositories.findById(id);
         if(todoOptional.isPresent()){
             return converter.todoToPojo(todoOptional.get());
@@ -71,7 +71,8 @@ public class TodoService implements ITodoService {
 
     @Override
     @Transactional
-    public TodoPojo updateTodo(Todo source, Long todoId) {
+    public TodoPojo updateTodo(Todo source, Long todoId, Long userId) {
+
         Optional<Todo> targetOptional = todoRepositories.findById(todoId);
 
         if (targetOptional.isPresent()) {
@@ -88,13 +89,14 @@ public class TodoService implements ITodoService {
 
             return converter.todoToPojo(target);
         } else {
-            throw new NoSuchElementException("unable to delete todo");
+            throw new NoSuchElementException("unable to update todo");
         }
     }
 
+
     @Override
     @Transactional
-    public String deleteTodo(Long id) {
+    public String deleteTodo(Long id, Long userId) {
         Optional<Todo> todoForDeleteOptional = todoRepositories.findById(id);
         if(todoForDeleteOptional.isPresent()) {
             Todo todoForDelete = todoForDeleteOptional.get();

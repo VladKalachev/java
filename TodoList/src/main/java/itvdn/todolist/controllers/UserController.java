@@ -1,6 +1,8 @@
 package itvdn.todolist.controllers;
 
 import itvdn.todolist.Exceptions.CustomEmptyDataException;
+import itvdn.todolist.Security.TokenManager;
+import itvdn.todolist.Security.TokenPayload;
 import itvdn.todolist.domain.PlainObjects.UserPojo;
 import itvdn.todolist.domain.User;
 import itvdn.todolist.services.interfaces.IUserService;
@@ -13,6 +15,7 @@ import org.springframework.util.ClassUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.SQLException;
+import java.util.Calendar;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -20,16 +23,31 @@ import java.util.NoSuchElementException;
 public class UserController {
 
     private final IUserService userService;
+    private final TokenManager tokenManager;
 
     @Autowired
-    public UserController(IUserService userService) {
+    public UserController(IUserService userService, TokenManager tokenManager) {
         this.userService = userService;
+        this.tokenManager = tokenManager;
     }
 
     @PostMapping(path = "/registration")
     public ResponseEntity<UserPojo> createUser(@RequestBody User user) {
         UserPojo result = userService.createUser(user);
         return new ResponseEntity<>(result, HttpStatus.OK);
+    }
+
+    @PostMapping(path = "/authentication")
+    public ResponseEntity<String> authenticateUser(@RequestBody User user) {
+        UserPojo authenticatedUser = userService.findUserByEmailAndPassword(user.getEmail(), user.getPassword());
+
+        if(authenticatedUser == null) {
+            return new ResponseEntity<>(null, HttpStatus.UNAUTHORIZED);
+        }
+
+        String token = tokenManager.createToken(new TokenPayload(authenticatedUser.getId(), authenticatedUser.getEmail(), Calendar.getInstance().getTime()));
+
+        return new ResponseEntity<>(token, HttpStatus.OK);
     }
 
     @GetMapping(path = "/user/{id}")

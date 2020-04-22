@@ -1,6 +1,7 @@
 package itvdn.todolist.controllers;
 
 import itvdn.todolist.Exceptions.CustomEmptyDataException;
+import itvdn.todolist.annotations.Authenticational;
 import itvdn.todolist.domain.PlainObjects.TodoPojo;
 import itvdn.todolist.domain.Todo;
 import itvdn.todolist.services.interfaces.ITodoService;
@@ -12,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.util.ClassUtils;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -20,6 +22,7 @@ import java.util.NoSuchElementException;
 public class TodoController {
 
     private final ITodoService todoService;
+    private Long userId;
 
     @Autowired
     public TodoController(ITodoService todoService) {
@@ -27,30 +30,34 @@ public class TodoController {
     }
 
     @PostMapping(path = "/user/{userId}/todo")
-    public ResponseEntity<TodoPojo> createTodo (@RequestBody Todo todo, @PathVariable Long userId){
+    @Authenticational
+    public ResponseEntity<TodoPojo> createTodo (HttpServletRequest request, @RequestBody Todo todo) {
         TodoPojo result = todoService.createTodo(todo, userId);
         return new ResponseEntity<>(result, HttpStatus.CREATED);
     }
 
-
+    @Authenticational
     @GetMapping(path = "/user/{userId}/todo/{id}")
-    public ResponseEntity<TodoPojo> getTodo (@PathVariable Long id) {
-        return new ResponseEntity<>(todoService.getTodo(id), HttpStatus.OK);
+    public ResponseEntity<TodoPojo> getTodo (HttpServletRequest request, @PathVariable Long id) {
+        return new ResponseEntity<>(todoService.getTodo(id, userId), HttpStatus.OK);
     }
 
+    @Authenticational
     @GetMapping(path = "/user/{userId}/todos")
-    public ResponseEntity<List<TodoPojo>> getAllTodo (@PathVariable Long userId) {
+    public ResponseEntity<List<TodoPojo>> getAllTodo (HttpServletRequest request) {
         return new ResponseEntity<>(todoService.getAllTodos(userId), HttpStatus.OK);
     }
 
+    @Authenticational
     @PutMapping(path = "/user/{userId}/todo/{id}")
-    public ResponseEntity<TodoPojo> updateTodo (@RequestBody Todo source, @PathVariable Long id) {
-        return new ResponseEntity<>(todoService.updateTodo(source, id), HttpStatus.OK);
+    public ResponseEntity<TodoPojo> updateTodo (HttpServletRequest request, @RequestBody Todo source, @PathVariable Long id) {
+        return new ResponseEntity<>(todoService.updateTodo(source, id, userId), HttpStatus.OK);
     }
 
+    @Authenticational
     @DeleteMapping(path = "/user/{userId}/todo/{id}")
-    public ResponseEntity<String> deleteTodo (@PathVariable Long id) {
-        return new ResponseEntity<>(todoService.deleteTodo(id), HttpStatus.OK);
+    public ResponseEntity<String> deleteTodo (HttpServletRequest request, @PathVariable Long id) {
+        return new ResponseEntity<>(todoService.deleteTodo(id, userId), HttpStatus.OK);
     }
 
     /**

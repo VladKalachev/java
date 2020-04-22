@@ -44,6 +44,10 @@
         <property name="packagesToScan" value="itvdn.todolist.domain"/>
     </bean>
 
+    <bean id="tokenManager" class="itvdn.todolist.Security.TokenManager">
+        <constructor-arg name="secretKey" value="SuperSecretKey"/>
+    </bean>
+
     <jpa:repositories base-package="itvdn.todolist.repositories"
                       entity-manager-factory-ref="entityManagerFactory"
                       transaction-manager-ref="transactionManager" />
