@@ -1,4 +1,4 @@
-package com.itvdn.javaStarter;
+package com.itvdn.javaStarter.variables;
 
 public class C01_ConstantFinal {
     public static void main(String[] args) {

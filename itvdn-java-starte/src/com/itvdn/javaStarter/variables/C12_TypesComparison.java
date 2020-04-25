@@ -1,4 +1,4 @@
-package com.itvdn.javaStarter;
+package com.itvdn.javaStarter.variables;
 
 public class C12_TypesComparison {
     public static void main(String[] args) {

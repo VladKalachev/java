@@ -1,4 +1,4 @@
-package com.itvdn.javaStarter;
+package com.itvdn.javaStarter.variables;
 
 public class C09_LocalVariables {
     // Использование локальных областей и локальных переменных.

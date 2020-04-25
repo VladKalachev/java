@@ -1,4 +1,4 @@
-package com.itvdn.javaStarter;
+package com.itvdn.javaStarter.machineMathematics;
 
 public class C03_DefaultValues {
     public static void main(String[] args) {

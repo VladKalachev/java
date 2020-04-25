@@ -1,4 +1,4 @@
-package com.itvdn.javaStarter;
+package com.itvdn.javaStarter.machineMathematics;
 
 public class C04_FloatDouble {
     public static void main(String[] args) {

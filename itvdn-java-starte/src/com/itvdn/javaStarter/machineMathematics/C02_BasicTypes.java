@@ -1,4 +1,4 @@
-package com.itvdn.javaStarter;
+package com.itvdn.javaStarter.machineMathematics;
 
 public class C02_BasicTypes {
     public static void main(String[] args) {

@@ -1,4 +1,4 @@
-package com.itvdn.javaStarter;
+package com.itvdn.javaStarter.variables;
 
 public class C10_Concatenation {
     // Сцепление строк. (Конкатенация)
