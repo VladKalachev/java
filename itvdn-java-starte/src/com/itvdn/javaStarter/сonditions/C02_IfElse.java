@@ -1,4 +1,4 @@
-package com.itvdn.javaStarter;
+package com.itvdn.javaStarter.сonditions;
 
 public class C02_IfElse {
     public static void main(String[] args) {

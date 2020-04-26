@@ -1,4 +1,4 @@
-package com.itvdn.javaStarter;
+package com.itvdn.javaStarter.сonditions;
 
 public class C10_Ternary {
     // Тернарная условная операция.

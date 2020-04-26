@@ -1,4 +1,4 @@
-package com.itvdn.javaStarter;
+package com.itvdn.javaStarter.сonditions;
 
 import java.util.Scanner;
 

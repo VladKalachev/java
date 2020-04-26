@@ -1,4 +1,4 @@
-package com.itvdn.javaStarter;
+package com.itvdn.javaStarter.сonditions;
 
 public class C08_Ternary {
     // Тернарная условная операция. Ограничения связанные с типобезопасностью.

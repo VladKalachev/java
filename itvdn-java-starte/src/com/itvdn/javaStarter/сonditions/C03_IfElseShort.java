@@ -1,4 +1,4 @@
-package com.itvdn.javaStarter;
+package com.itvdn.javaStarter.сonditions;
 
 public class C03_IfElseShort {
     public static void main(String[] args) {
