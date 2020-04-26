@@ -1,4 +1,4 @@
-package com.itvdn.javaStarter;
+package com.itvdn.javaStarter.logic;
 
 public class C06_LogicShift {
 

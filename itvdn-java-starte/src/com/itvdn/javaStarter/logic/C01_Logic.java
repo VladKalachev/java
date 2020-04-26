@@ -1,4 +1,4 @@
-package com.itvdn.javaStarter;
+package com.itvdn.javaStarter.logic;
 
 public class C01_Logic {
     // Побитовые логические операции.
